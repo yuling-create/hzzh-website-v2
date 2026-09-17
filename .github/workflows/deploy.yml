@@ -33,8 +33,11 @@ jobs:
       - name: Sync assets
         run: |
           mkdir -p public/assets src/assets
-          cp -R assets/. public/assets/
-          cp -R assets/. src/assets/
+          if [ -d assets ]; then
+            cp -R assets/. public/assets/
+            cp -R assets/. src/assets/
+          fi
+          cp -R public/assets/. src/assets/
 
       - name: Build
         run: npm run build
